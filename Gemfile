@@ -14,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
 group :development do
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'html2haml'

@@ -1,26 +1,24 @@
 %h1 Listing announcements
 
-%table
+%table.table.table-striped
   %tr
-    %th Published on
-    %th Expired
+    %th Publish on
+    %th Expire_on
     %th Critical flag
     %th Body
     %th Title
     %th Publisher
     %th
     %th
-    %th
 
   - @announcements.each do |announcement|
     %tr
-      %td= announcement.published_on
-      %td= announcement.expired
+      %td= announcement.publish_on
+      %td= announcement.expire_on
       %td= announcement.critical_flag
       %td= announcement.body
       %td= announcement.title
       %td= announcement.publisher
-      %td= link_to 'Show', announcement
       %td= link_to 'Edit', edit_announcement_path(announcement)
       %td= link_to 'Destroy', announcement, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

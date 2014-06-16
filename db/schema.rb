@@ -11,14 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616193527) do
+ActiveRecord::Schema.define(version: 20140616195802) do
 
   create_table "announcements", force: true do |t|
-    t.date     "published_on"
-    t.date     "expired"
+    t.date     "publish_on"
+    t.date     "expire_on"
     t.boolean  "critical_flag"
     t.text     "body"
     t.string   "title"
+    t.string   "publisher"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.date     "event_date"
+    t.time     "event_time"
+    t.string   "title"
+    t.string   "body"
     t.string   "publisher"
     t.datetime "created_at"
     t.datetime "updated_at"
