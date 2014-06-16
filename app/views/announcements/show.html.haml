@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Published on:
+  = @announcement.published_on
+%p
+  %b Expired:
+  = @announcement.expired
+%p
+  %b Critical flag:
+  = @announcement.critical_flag
+%p
+  %b Body:
+  = @announcement.body
+%p
+  %b Title:
+  = @announcement.title
+%p
+  %b Publisher:
+  = @announcement.publisher
+
+= link_to 'Edit', edit_announcement_path(@announcement)
+\|
+= link_to 'Back', announcements_path

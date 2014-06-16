@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  published_on: 2014-06-16
+  expired: 2014-06-16
+  critical_flag: false
+  body: MyText
+  title: MyString
+  publisher: MyString
+
+two:
+  published_on: 2014-06-16
+  expired: 2014-06-16
+  critical_flag: false
+  body: MyText
+  title: MyString
+  publisher: MyString
