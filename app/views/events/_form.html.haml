@@ -18,8 +18,22 @@
   .field
     = f.label :body
     = f.text_field :body
-  .field
-    = f.label :publisher
-    = f.text_field :publisher
   .actions
     = f.submit 'Save'
+
+%form.form-horizontal
+  %fieldset
+    %legend Legend
+    .form-group
+      %label.col-lg-2.control-label{:for => "title"} Title
+      .col-lg-10
+        %input#title.form-control{:placeholder => "Title"}
+    .form-group
+      %label.col-lg-2.control-label{:for => "body"} Event Description
+      .col-lg-10
+        %textarea#textArea.form-control{:rows => "3"}
+
+    .form-group
+      .col-lg-10.col-lg-offset-2
+        %button.btn.btn-danger Cancel
+        %button.btn.btn-primary{:type => "submit"} Submit

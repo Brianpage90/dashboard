@@ -1,28 +1,26 @@
-= form_for @announcement do |f|
-  - if @announcement.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@announcement.errors.count, "error")} prohibited this announcement from being saved:"
-      %ul
-        - @announcement.errors.full_messages.each do |msg|
-          %li= msg
+.row
+  = simple_form_for @announcement , html: {class: 'form-horizontal form' } do |f|
+    .col-md-8.col-md-offset-1
+      -#TODO Make form centered
+      .row
+        .col-md-8
+          = f.input :title
+          = f.input :body, input_html: {rows: 8}
+        .col-md-4
+          = f.input :publish_on, as: :string
+          = f.input :expire_on, as: :string
+          = f.input :critical_flag
+          = f.button :submit, class: "btn-primary"
+          -#TODO style button to align up with text fields
 
-  .field
-    = f.label :publish_on
-    = f.date_select :publish_on
-  .field
-    = f.label :expire_on
-    = f.date_select :expire_on
-  .field
-    = f.label :critical_flag
-    = f.check_box :critical_flag
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :publisher
-    = f.text_field :publisher
-  .actions
-    = f.submit 'Save'
+:coffee
+  $('#announcement_publish_on, #announcement_expire_on').each ->
+    $picker_input = $(this)
+    $picker_input.datepicker
+      dateFormat: 'yy-mm-dd'
+      showOn: 'focus'
+
+  tinymce.init
+    selector: "textarea"
+    plugins: "textcolor"
+    toolbar: "undo redo | styleselect | bold italic | bullist numlist | forecolor backcolor"

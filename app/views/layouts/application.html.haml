@@ -6,10 +6,15 @@
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Dashboard'}"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "//tinymce.cachefly.net/4.0/tinymce.min.js"
     = csrf_meta_tags
   %body
     %header
+      = render 'layouts/header'
       = render 'layouts/navigation'
     %main{:role => "main"}
-      = render 'layouts/messages'
-      = yield
+      .container-fluid
+        = render 'layouts/messages'
+        = yield
+
+

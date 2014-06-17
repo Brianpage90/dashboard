@@ -1,5 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, except: [:show, :index]
 
   # GET /announcements
   # GET /announcements.json
@@ -24,15 +25,13 @@ class AnnouncementsController < ApplicationController
   # POST /announcements
   # POST /announcements.json
   def create
+    params[:announcement][:admin_id] = current_admin.id
     @announcement = Announcement.new(announcement_params)
-
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to @announcement, notice: 'Announcement was successfully created.' }
-        format.json { render :show, status: :created, location: @announcement }
+        format.html { redirect_to action: "index", notice: 'Announcement was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @announcement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,13 +39,12 @@ class AnnouncementsController < ApplicationController
   # PATCH/PUT /announcements/1
   # PATCH/PUT /announcements/1.json
   def update
+    params[:announcement][:admin_id] = current_admin.id
     respond_to do |format|
       if @announcement.update(announcement_params)
-        format.html { redirect_to @announcement, notice: 'Announcement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @announcement }
+        format.html { redirect_to action: "index", notice: 'Announcement was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @announcement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +67,6 @@ class AnnouncementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def announcement_params
-      params.require(:announcement).permit(:published_on, :expired, :critical_flag, :body, :title, :publisher)
+      params.require(:announcement).permit(:publish_on, :expire_on, :critical_flag, :body, :title, :admin_id)
     end
 end

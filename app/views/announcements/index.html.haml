@@ -24,4 +24,9 @@
 
 %br
 
-= link_to 'New Announcement', new_announcement_path
+%a{:class => 'btn btn-primary btn-lg active', :href => new_announcement_path}
+  New Announcement
+
+%h1 Announcements
+= render 'announcements/announcement_page'
+
